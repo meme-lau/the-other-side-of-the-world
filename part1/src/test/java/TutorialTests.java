@@ -3,8 +3,10 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.toList;
 
 /**
  * TutorialTests
@@ -25,14 +27,14 @@ class TutorialTests {
             }
         });
         System.out.println(comparingObjects);
-
     }
 
     @Test
     void doComparingInFP() {
-        List<ComparingObject> comparingObjects = Stream.of(ComparingObject.of(1), ComparingObject.of(2), ComparingObject.of(3))
-                                                       .sorted(Comparator.comparing(ComparingObject::getValue))
-                                                       .collect(Collectors.toList());
+        List<ComparingObject> comparingObjects =
+                Stream.of(ComparingObject.of(1), ComparingObject.of(2), ComparingObject.of(3))
+                      .sorted(comparing(ComparingObject::getValue))
+                      .collect(toList());
         System.out.println(comparingObjects);
     }
 
